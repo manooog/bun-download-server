@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h2>下载示例</h2>
+  <p> response header 包含 Content-Disposition 头，点开后可以触发浏览器的另存为对话框👉：<button id="button">click me</button>
+  </p>
+  <p> 利用 a 链接和 createObjectURL 接口，可以下载任何东西，下载图片的示例👉：<button id="button-a-link">click me</button>；下载json的示例👉：<button
+      id="button-a-link-anything">click me</button>
+  </p>
+</body>
+<script>
+
+  document.querySelector('#button').addEventListener('click', () => {
+    window.location.href = '/img/download'
+  })
+
+  document.querySelector('#button-a-link').addEventListener('click', async () => {
+    const res = await fetch('/img')
+
+    const a = document.createElement('a')
+    a.href = window.URL.createObjectURL(await res.blob())
+    a.download = 'flowers.jpeg'
+    a.click()
+    window.URL.revokeObjectURL(a.href)
+  })
+
+
+  document.querySelector('#button-a-link-anything').addEventListener('click', async () => {
+    const res = await fetch('/json')
+
+    const a = document.createElement('a')
+    a.href = window.URL.createObjectURL(await res.blob())
+    a.download = 'flowers.json'
+    a.click()
+    window.URL.revokeObjectURL(a.href)
+  })
+
+</script>
+
+</html>
