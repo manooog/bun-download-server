@@ -19,7 +19,7 @@
 <script>
 
   document.querySelector('#button').addEventListener('click', () => {
-    window.location.href = '/img/download'
+    window.location.href = '/json/download'
   })
 
   document.querySelector('#button-a-link').addEventListener('click', async () => {
@@ -27,7 +27,7 @@
 
     const a = document.createElement('a')
     a.href = window.URL.createObjectURL(await res.blob())
-    a.download = 'flowers.jpeg'
+    a.download = 'flowers-by-fetch.jpeg'
     a.click()
     window.URL.revokeObjectURL(a.href)
   })
@@ -38,7 +38,7 @@
 
     const a = document.createElement('a')
     a.href = window.URL.createObjectURL(await res.blob())
-    a.download = 'flowers.json'
+    a.download = 'json-by-fetch.json'
     a.click()
     window.URL.revokeObjectURL(a.href)
   })

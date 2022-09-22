@@ -28,12 +28,16 @@ export default {
       return jsonRes()
     } else if (url.pathname === "/json/download") {
       return jsonRes({
-        "Content-Disposition": 'attachment; filename="flowers.json"',
+        "Content-Disposition": 'attachment; filename="json.json"',
       })
     }
 
     if (url.pathname === "/download") {
       return fileRes("index.html")
+    }
+
+    if (url.pathname === "/stream") {
+      return fileRes("stream.html")
     }
   },
 }
